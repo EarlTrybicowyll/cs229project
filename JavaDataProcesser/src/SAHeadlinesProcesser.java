@@ -44,8 +44,9 @@ public class SAHeadlinesProcesser {
 					currentEvent = new NewsEvent("IBM", "Seeking Alpha", headline);
 					String line2 = br.readLine();
 					currentEvent.setDate(parseDate(line2));
-					newsEvents.add(currentEvent);
-					System.out.println(currentEvent);
+					if(currentEvent.getDate() != null) 
+						newsEvents.add(currentEvent);
+					//System.out.println(currentEvent);
 				} else {
 					br.readLine(); // skip next line
 				}
@@ -72,12 +73,12 @@ public class SAHeadlinesProcesser {
 		} catch (ParseException e) {
 			try {
 				date = new SimpleDateFormat("MMM dd ", Locale.ENGLISH).parse(dateline);
-				date.setYear(2013);
+				date.setYear(113);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return date;
 	}
@@ -89,7 +90,8 @@ public class SAHeadlinesProcesser {
 			String symbol = symbols[i];
 			symbol = symbol.trim();
 			symbol = symbol.toLowerCase();
-			if(symbol.charAt(symbol.length()-1) == 's') {
+			char lastchar = symbol.charAt(symbol.length()-1);
+			if(lastchar == 's' ) {
 				symbol = symbol.substring(0,symbol.length()-1);
 			}
 			if(dict.getSymbol(symbol) != 0) {

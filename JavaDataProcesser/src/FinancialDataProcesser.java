@@ -25,13 +25,14 @@ public class FinancialDataProcesser {
 		// looks at most 5 days ahead
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		for(int i=0; i<5; i++) {
+		for(int i=0; i<10; i++) {
 			if(quotes.containsKey(date)) {
 				return quotes.get(date);
 			}
 			cal.add(Calendar.DAY_OF_YEAR, 1);
 			date = cal.getTime();
 		}
+		System.out.println("returning null for " + date);
 		return null;
 	}
 	

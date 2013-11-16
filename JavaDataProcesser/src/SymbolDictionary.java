@@ -37,9 +37,23 @@ public class SymbolDictionary {
 		symbolMap.put("fail", 17);
 		symbolMap.put("fell", 18);
 		symbolMap.put("rose", 19);
+		symbolMap.put("growth", 12);
+		symbolMap.put("failure", 20);
+		symbolMap.put("great", 21);
+		symbolMap.put("jump", 22);
+		symbolMap.put("impres", 23);
+		symbolMap.put("threat", 24);
+		symbolMap.put("monopoly", 25);
+		symbolMap.put("concern", 26);
+		symbolMap.put("lead", 27);
+		symbolMap.put("mis", 28);
 	}
 	
 	public Collection<String> getSymbols() {
 		return symbolMap.keySet();
+	}
+	
+	public int size() {
+		return getSymbols().size();
 	}
 }
