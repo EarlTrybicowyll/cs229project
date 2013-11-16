@@ -24,9 +24,10 @@ public class BayesianClassifier {
 	 * @param events
 	 * @return
 	 */
-	public List<Boolean> test(List<NewsEvent> events) {
+	public List<Boolean> test(List<DataPoint> dataPoints) {
 		List<Boolean> results = new ArrayList<Boolean>();
-		for(NewsEvent event : events) {
+		for(DataPoint dataPoint : dataPoints) {
+			NewsEvent event = dataPoint.getEvent();
 			results.add(classifyEvent(event));
 		}
 		return results;
@@ -56,7 +57,7 @@ public class BayesianClassifier {
 	 * @param events
 	 * @param results
 	 */
-	public void train(List<NewsEvent> events, List<Boolean> results) {
+	public void train(List<DataPoint> dataPoints) {
 		positiveSymbolCounts = new int[dict.size()+1];
 		negativeSymbolCounts = new int[dict.size()+1];
 		System.out.println("sizze: " + dict.size());
@@ -70,9 +71,9 @@ public class BayesianClassifier {
 		numberPositiveResults = 0;
 		numberNegativeResults = 0;
 		
-		for(int i=0; i< events.size(); i++) {
-			NewsEvent event = events.get(i);
-			Boolean result = results.get(i);
+		for(int i=0; i< dataPoints.size(); i++) {
+			NewsEvent event = dataPoints.get(i).getEvent();
+			Boolean result = dataPoints.get(i).getResult();
 			if(result) {
 				totalPositiveSymbols += addSymbols(positiveSymbolCounts, event.getTitleSymbols());
 				numberPositiveResults++;
